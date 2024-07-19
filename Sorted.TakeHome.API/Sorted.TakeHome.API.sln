@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorted.TakeHome.API", "Sorted.TakeHome.API\Sorted.TakeHome.API.csproj", "{1B30E32F-D03B-4E3C-9971-47DA5F754C14}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{A0DD3642-F33C-4F57-839C-50FF064EBA00}"
+	ProjectSection(SolutionItems) = preProject
+		..\Assets\openapi.yaml = ..\Assets\openapi.yaml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1B30E32F-D03B-4E3C-9971-47DA5F754C14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B30E32F-D03B-4E3C-9971-47DA5F754C14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B30E32F-D03B-4E3C-9971-47DA5F754C14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B30E32F-D03B-4E3C-9971-47DA5F754C14}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CFD6DE74-D4F6-449B-A146-8C45C2D8F37F}
+	EndGlobalSection
+EndGlobal
