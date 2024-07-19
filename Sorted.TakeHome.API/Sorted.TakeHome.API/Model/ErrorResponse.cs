@@ -1,6 +1,6 @@
 ﻿namespace Sorted.TakeHome.API.Model
 {
-    public class Error
+    public class ErrorResponse
     {
         public string Message { get; set; }
         public IEnumerable<ErrorDetail> Details { get; set; }
