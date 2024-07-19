@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Sorted.TakeHome.API.Model;
 
 namespace Sorted.TakeHome.API.Controllers
 {
@@ -8,12 +9,9 @@ namespace Sorted.TakeHome.API.Controllers
 
 
         [HttpGet("/rainfall/id/{stationId}/readings")]
-        public IEnumerable<int> GetStationReadings(string stationId, int count = 10)
+        public RainfallReadingResponse GetStationReadings(string stationId, int count = 10)
         {
-            return Array.Empty<int>();
+            return new RainfallReadingResponse();
         }
-    
-        
-
     }
 }
