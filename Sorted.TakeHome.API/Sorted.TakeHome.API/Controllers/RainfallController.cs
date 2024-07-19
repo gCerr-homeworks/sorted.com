@@ -5,8 +5,12 @@ namespace Sorted.TakeHome.API.Controllers
 {
     public class RainfallController : Controller
     {
-        public RainfallController() { }
+        private readonly ICollectRainfallReadings rainfallReader;
 
+        public RainfallController(ICollectRainfallReadings rainfallReader)
+        {
+            this.rainfallReader = rainfallReader;
+        }
 
         [HttpGet("/rainfall/id/{stationId}/readings")]
         [ProducesResponseType(typeof(RainfallReadingResponse), 200)]
