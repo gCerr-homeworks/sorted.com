@@ -17,9 +17,39 @@ namespace Sorted.TakeHome.API.Controllers
         [ProducesResponseType(typeof(ErrorResponse), 400)]        
         [ProducesResponseType(typeof(ErrorResponse), 404)]        
         [ProducesResponseType(typeof(ErrorResponse), 500)]        
-        public RainfallReadingResponse GetStationReadings(string stationId, int count = 10)
+        public async Task<ActionResult> GetStationReadings(string stationId, int count = 10)
         {
-            return new RainfallReadingResponse();
+            if (string.IsNullOrWhiteSpace(stationId))
+            {
+                var errorResponse = new ErrorResponse
+                {
+                    Message = "Invalid request",
+                    Details = new List<ErrorDetail> {
+                        new ErrorDetail {
+                            PropertyName = "stationId",
+                            Message = "empty string or whitespace"
+                        }
+                    }
+                };
+                return BadRequest(errorResponse);
+            }
+
+            if (count < 0 || count > 100)
+            {
+                var errorResponse = new ErrorResponse {
+                    Message = "Invalid request",
+                    Details = new List<ErrorDetail> {
+                        new ErrorDetail {
+                            PropertyName = "count",
+                            Message = "Out of range allowed [1 to 100]"
+                        }
+                    }
+                };
+                return BadRequest(errorResponse);
+            }
+             
+
+            return Ok(new RainfallReadingResponse());
         }
     }
 }
