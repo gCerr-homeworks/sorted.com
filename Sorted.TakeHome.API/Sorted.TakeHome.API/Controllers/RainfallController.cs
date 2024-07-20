@@ -57,7 +57,21 @@ namespace Sorted.TakeHome.API.Controllers
                 return NotFound(errorResponse);
             }
 
-            return Ok(new RainfallReadingResponse());
+            try
+            {
+                var data = await rainfallReader.GetStationReadingsAsync(stationId, count);
+                return Ok(new RainfallReadingResponse());
+            }
+            catch (Exception ex)
+            {
+                var errorResponse = new ErrorResponse
+                {
+                    Message = "Ooops... something went wrong! Apologies, we'll do better next time"
+                };
+                return StatusCode(500, errorResponse);
+            }
+
+            
         }
     }
 }

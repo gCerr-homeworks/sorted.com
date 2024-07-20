@@ -50,5 +50,19 @@ namespace Sorted.TakeHome.API.UnitTests
             result.StatusCode.Should().Be(404);
             result.Value.Should().BeOfType<ErrorResponse>();
         }
+
+        [Fact]
+        public async Task rainfallByStation_whenInternalError_returns_500Error()
+        {
+            var stationId = "some-station";
+            var count = 10;
+            rainfallReaderMock.Setup(rr => rr.StationExistsAsync(stationId)).Returns(Task.FromResult(true));
+            rainfallReaderMock.Setup(rr => rr.GetStationReadingsAsync(stationId, count)).Throws<Exception>();
+
+            var result = (ObjectResult)await controller.GetStationReadings(stationId, count);
+
+            result.StatusCode.Should().Be(500);
+            result.Value.Should().BeOfType<ErrorResponse>();
+        }
     }
 }
