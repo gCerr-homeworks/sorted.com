@@ -4,7 +4,6 @@ using Moq;
 using Sorted.TakeHome.API.Controllers;
 using Sorted.TakeHome.API.Model;
 using Sorted.TakeHome.API.Readings;
-using Sorted.TakeHome.Domain;
 
 namespace Sorted.TakeHome.API.UnitTests
 {

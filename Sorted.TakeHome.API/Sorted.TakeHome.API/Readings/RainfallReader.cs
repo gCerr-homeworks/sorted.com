@@ -23,12 +23,13 @@ internal class RainfallReader : ICollectRainfallReadings
         try
         {
             var response = await readingsRepository.StationExistsAsync(stationId);
+            
             if (response == null)
             {
                 return false;
             }
 
-            return true;
+            return response.Items.StationReference == stationId;
         }
         catch (Refit.ApiException rftException)
         {

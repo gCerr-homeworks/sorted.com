@@ -2,9 +2,9 @@
 
 namespace Sorted.TakeHome.API.Readings
 {
-    public class ReadingsSourceResponse
-    {
-        public ReadingsSourceResponseMetadata Meta { get; set; }
+
+    public class DataSourceReadingsResponse : DataSourceResponseBase
+    {        
         public List<RainfallMeasure> Items { get; set; }
     }
 }
