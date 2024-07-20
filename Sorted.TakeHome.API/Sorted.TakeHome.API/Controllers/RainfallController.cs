@@ -17,7 +17,7 @@ namespace Sorted.TakeHome.API.Controllers
         [ProducesResponseType(typeof(ErrorResponse), 400)]        
         [ProducesResponseType(typeof(ErrorResponse), 404)]        
         [ProducesResponseType(typeof(ErrorResponse), 500)]        
-        public async Task<ActionResult> GetStationReadings(string stationId, int count = 10)
+        public async Task<ActionResult> GetStationReadingsAsync(string stationId, int count = 10)
         {
             if (string.IsNullOrWhiteSpace(stationId))
             {

@@ -21,7 +21,7 @@ namespace Sorted.TakeHome.API.UnitTests
         [Fact]
         public async Task rainfallByStation_whenInvalidStatioId_returns_400Error()
         {
-            var result = (ObjectResult)await controller.GetStationReadings(string.Empty);
+            var result = (ObjectResult)await controller.GetStationReadingsAsync(string.Empty);
 
             result.StatusCode.Should().Be(400);
             result.Value.Should().BeOfType<ErrorResponse>();
@@ -32,7 +32,7 @@ namespace Sorted.TakeHome.API.UnitTests
         [Fact]
         public async Task rainfallByStation_whenInvalidCount_returns_400Error()
         {
-            var result = (ObjectResult) await controller.GetStationReadings("some-station", 101);
+            var result = (ObjectResult) await controller.GetStationReadingsAsync("some-station", 101);
 
             result.StatusCode.Should().Be(400);
             result.Value.Should().BeOfType<ErrorResponse>();
@@ -45,7 +45,7 @@ namespace Sorted.TakeHome.API.UnitTests
             var stationId = "some-station";
             rainfallReaderMock.Setup(rr => rr.StationExistsAsync(stationId)).Returns(Task.FromResult(false));
 
-            var result = (ObjectResult)await controller.GetStationReadings(stationId);
+            var result = (ObjectResult)await controller.GetStationReadingsAsync(stationId);
 
             result.StatusCode.Should().Be(404);
             result.Value.Should().BeOfType<ErrorResponse>();
@@ -59,10 +59,24 @@ namespace Sorted.TakeHome.API.UnitTests
             rainfallReaderMock.Setup(rr => rr.StationExistsAsync(stationId)).Returns(Task.FromResult(true));
             rainfallReaderMock.Setup(rr => rr.GetStationReadingsAsync(stationId, count)).Throws<Exception>();
 
-            var result = (ObjectResult)await controller.GetStationReadings(stationId, count);
+            var result = (ObjectResult)await controller.GetStationReadingsAsync(stationId, count);
 
             result.StatusCode.Should().Be(500);
             result.Value.Should().BeOfType<ErrorResponse>();
         }
+
+        [Fact]
+        public async Task rainfallByStation_when_validRequest_returns_200Readings()
+        {
+            var stationId = "some-station";
+            var count = 10;
+            rainfallReaderMock.Setup(rr => rr.StationExistsAsync(stationId)).Returns(Task.FromResult(true));
+
+            var result = (ObjectResult)await controller.GetStationReadingsAsync(stationId, count);
+
+            result.StatusCode.Should().Be(200);
+            result.Value.Should().BeOfType<RainfallReadingResponse>();
+        }
+
     }
 }
