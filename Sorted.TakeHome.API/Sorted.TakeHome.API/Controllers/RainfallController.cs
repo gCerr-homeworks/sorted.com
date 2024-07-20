@@ -47,7 +47,15 @@ namespace Sorted.TakeHome.API.Controllers
                 };
                 return BadRequest(errorResponse);
             }
-             
+            
+            if(!await rainfallReader.StationExistsAsync(stationId))
+            {
+                var errorResponse = new ErrorResponse
+                {
+                    Message = "Station not found"                    
+                };
+                return NotFound(errorResponse);
+            }
 
             return Ok(new RainfallReadingResponse());
         }

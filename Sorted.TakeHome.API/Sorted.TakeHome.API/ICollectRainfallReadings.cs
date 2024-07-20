@@ -4,6 +4,7 @@ namespace Sorted.TakeHome.API
 {
     public interface ICollectRainfallReadings
     {
-        IEnumerable<RainfallMeasure> GetStationReadings(string stationId, int readingsCount);
+        Task<IEnumerable<RainfallMeasure>> GetStationReadingsAsync(string stationId, int readingsCount);
+        Task<bool> StationExistsAsync(string stationId);
     }
 }
