@@ -42,37 +42,49 @@ namespace Sorted.TakeHome.API.Controllers
                     Details = new List<ErrorDetail> {
                         new ErrorDetail {
                             PropertyName = "count",
-                            Message = "Out of range allowed [1 to 100]"
+                            Message = "Out of range. Allowed: from 1 to 100"
                         }
                     }
                 };
                 return BadRequest(errorResponse);
             }
             
-            if(!await rainfallReader.StationExistsAsync(stationId))
-            {
-                var errorResponse = new ErrorResponse
-                {
-                    Message = "Station not found"                    
-                };
-                return NotFound(errorResponse);
-            }
-
             try
             {
+                // refit breaks if stationId has leading or trailing spaces
+                stationId = stationId.Trim();
+
+
+                if (!await rainfallReader.StationExistsAsync(stationId))
+                {
+                    var errorResponse = new ErrorResponse
+                    {
+                        Message = "Station not found"
+                    };
+                    return NotFound(errorResponse);
+                }
+
+
                 var data = await rainfallReader.GetStationReadingsAsync(stationId, count);
-                return Ok(new RainfallReadingResponse());
+                var result = new RainfallReadingResponse
+                {
+                    Readings = data.Select(x => new RainfallReading
+                    {
+                        DateMeasured = x.DateTime,
+                        AmountMeasured = x.Value
+                    })
+                };
+
+                return Ok(result);
             }
-            catch (Exception ex)
+            catch
             {
                 var errorResponse = new ErrorResponse
                 {
                     Message = "Ooops... something went wrong! Apologies, we'll do better next time"
                 };
                 return StatusCode(500, errorResponse);
-            }
-
-            
+            }            
         }
     }
 }

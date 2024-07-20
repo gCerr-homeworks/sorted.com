@@ -11,9 +11,11 @@ internal class RainfallReader : ICollectRainfallReadings
         this.readingsRepository = readingsRepository;
     }
 
-    public Task<IEnumerable<RainfallMeasure>> GetStationReadingsAsync(string stationId, int readingsCount)
+    public async Task<IEnumerable<RainfallMeasure>> GetStationReadingsAsync(string stationId, int readingsCount)
     {
-        throw new NotImplementedException();
+        var response = await readingsRepository.GetStationReadingsAsync(stationId, readingsCount);
+
+        return response.Items;
     }
 
     public async Task<bool> StationExistsAsync(string stationId)
