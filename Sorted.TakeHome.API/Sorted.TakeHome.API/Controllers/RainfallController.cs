@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Sorted.TakeHome.API.Model;
+using Sorted.TakeHome.API.Readings;
 
 namespace Sorted.TakeHome.API.Controllers
 {
