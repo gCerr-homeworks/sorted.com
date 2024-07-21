@@ -2,6 +2,6 @@
 {
     public class DataSourceResponseBase
     {
-        public ReadingsSourceResponseMetadata Meta { get; set; }
+        public DataSourceResponseMetadata Meta { get; set; }
     }
 }

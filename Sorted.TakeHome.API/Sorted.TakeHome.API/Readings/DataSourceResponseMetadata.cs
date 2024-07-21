@@ -1,6 +1,6 @@
 ﻿namespace Sorted.TakeHome.API.Readings
 {
-    public class ReadingsSourceResponseMetadata
+    public class DataSourceResponseMetadata
     {
         public string Publisher { get; set; }
     }
