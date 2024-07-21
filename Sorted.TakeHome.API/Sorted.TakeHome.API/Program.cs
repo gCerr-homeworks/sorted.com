@@ -11,8 +11,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddTransient<ICollectRainfallReadings, RainfallReader>();
+
+var apiBaseUrl = builder.Configuration.GetSection("Refit:Api:BaseUrl").Get<string>();
 builder.Services.AddRefitClient<IRetrieveReadings>()
-    .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://environment.data.gov.uk/flood-monitoring"));
+    .ConfigureHttpClient(c => c.BaseAddress = new Uri(apiBaseUrl));
 
 
 var app = builder.Build();
