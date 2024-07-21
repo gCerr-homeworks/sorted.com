@@ -10,9 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Assets", "Assets", "{A0DD36
 		..\Assets\openapi.yaml = ..\Assets\openapi.yaml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorted.TakeHome.API.UnitTests", "Sorted.TakeHome.API.UnitTests\Sorted.TakeHome.API.UnitTests.csproj", "{BF3EA229-ED34-4CE4-82BD-A5BA0CCC165E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorted.TakeHome.Domain", "Sorted.TakeHome.Domain\Sorted.TakeHome.Domain.csproj", "{482AE2FF-F277-44A7-9840-BE0D13A957BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sorted.TakeHome.API.UnitTests", "Sorted.TakeHome.API.UnitTests\Sorted.TakeHome.API.UnitTests.csproj", "{BF3EA229-ED34-4CE4-82BD-A5BA0CCC165E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,10 +26,6 @@ Global
 		{BF3EA229-ED34-4CE4-82BD-A5BA0CCC165E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF3EA229-ED34-4CE4-82BD-A5BA0CCC165E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF3EA229-ED34-4CE4-82BD-A5BA0CCC165E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{482AE2FF-F277-44A7-9840-BE0D13A957BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{482AE2FF-F277-44A7-9840-BE0D13A957BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{482AE2FF-F277-44A7-9840-BE0D13A957BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{482AE2FF-F277-44A7-9840-BE0D13A957BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
