@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="refit" Version="7.1.2" />
     <PackageReference Include="refit.HttpClientFactory" Version="7.1.2" />
+    <PackageReference Include="serilog" Version="4.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 

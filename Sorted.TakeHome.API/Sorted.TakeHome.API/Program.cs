@@ -1,35 +1,34 @@
 using Sorted.TakeHome.API.Readings;
 using Refit;
+using Sorted.TakeHome.API;
 
-var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-builder.Services.AddTransient<ICollectRainfallReadings, RainfallReader>();
-
-var apiBaseUrl = builder.Configuration.GetSection("Refit:Api:BaseUrl").Get<string>();
-builder.Services.AddRefitClient<IRetrieveReadings>()
-    .ConfigureHttpClient(c => c.BaseAddress = new Uri(apiBaseUrl));
-
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+internal class Program
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    private static async Task<int> Main(string[] args)
+    {
+        try
+        {
+            await CreateHostBuilder(args)
+                .Build()
+                .RunAsync();
+        }
+        catch (Exception ex)
+        {
+            Serilog.Log.Error(ex, ex.Message);
+            return 1;
+        }
+        finally
+        {
+            Serilog.Log.CloseAndFlush();
+        }
+
+        return 0;
+    }
+
+    private static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<Startup>();
+            });
 }
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();
